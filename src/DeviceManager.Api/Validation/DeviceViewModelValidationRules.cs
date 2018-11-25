@@ -1,4 +1,6 @@
-﻿using DeviceManager.Api.Model;
+﻿using System.Text.RegularExpressions;
+using DeviceManager.Api.Helpers;
+using DeviceManager.Api.Model;
 using FluentValidation;
 
 namespace DeviceManager.Api.Validation
@@ -16,15 +18,17 @@ namespace DeviceManager.Api.Validation
         /// </summary>
         public DeviceViewModelValidationRules()
         {
-            RuleFor(device => device.DeviceCode)
-                .NotEmpty()
-                .Length(5, 10);
 
+            
             RuleFor(device => device.DeviceCode)
-                .NotEmpty();
+                //.NotNull()
+                //.NotEmpty().WithMessage("Device code is mandatory");
+                .Matches(new Regex(Constants.IsGuidRegexExp)).WithMessage("Device code must be Guid")
+                .When(device => !string.IsNullOrWhiteSpace(device.DeviceCode));
 
             RuleFor(device => device.Title)
-                .NotEmpty();
+                .NotNull()
+                .NotEmpty().WithMessage("Device code is mandatory");
         }
     }
 }

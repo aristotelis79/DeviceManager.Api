@@ -1,4 +1,6 @@
-﻿namespace DeviceManager.Api.Helpers
+﻿using System.Text.RegularExpressions;
+
+namespace DeviceManager.Api.Helpers
 {
     /// <summary>
     /// All hardcoded strings can be read as properties in the application
@@ -44,5 +46,10 @@
         /// Guid of the first tenant
         /// </summary>
         public const string Tenant2Guid = "e7e73238-662f-4da2-b3a5-89f4abb87969";
+
+        /// <summary>
+        /// Specify Regex Expression for Guid
+        /// </summary>
+        public const string IsGuidRegexExp  = @"^(\{){0,1}[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}(\}){0,1}$";
     }
 }
