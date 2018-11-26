@@ -63,6 +63,13 @@ namespace DeviceManager.Api.Data.Management
         IQueryable<T> FindBy(Expression<Func<T, bool>> predicate);
 
         /// <summary>
+        /// Generic find by predicate
+        /// </summary>
+        /// <param name="predicate">Query predicate</param>
+        /// <returns>Entity</returns>
+        Task<IQueryable<T>> FindByAsync(Expression<Func<T, bool>> predicate);
+
+        /// <summary>
         /// Generic find by predicate and option to include child entity
         /// </summary>
         /// <param name="predicate">The predicate.</param>

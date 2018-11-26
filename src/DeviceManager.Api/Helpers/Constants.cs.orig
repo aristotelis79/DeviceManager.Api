@@ -58,6 +58,7 @@ namespace DeviceManager.Api.Helpers
         public const string Tenant2Guid = "e7e73238-662f-4da2-b3a5-89f4abb87969";
 
         /// <summary>
+<<<<<<< HEAD
         /// Name of the logging section in the config files
         /// </summary>
         public const string Logging = nameof(Logging);
@@ -91,10 +92,10 @@ namespace DeviceManager.Api.Helpers
         /// Name of the culture property in the header
         /// </summary>
         public const string StringInText = "string";
-
-        /// <summary>
+=======
         /// Specify Regex Expression for Guid
         /// </summary>
         public const string IsGuidRegexExp  = @"^(\{){0,1}[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}(\}){0,1}$";
+>>>>>>> master
     }
 }

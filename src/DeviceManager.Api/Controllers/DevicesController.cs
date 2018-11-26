@@ -83,6 +83,18 @@ namespace DeviceManager.Api.Controllers
         }
 
         /// <summary>
+        /// Gets the device by title in async await pattern.
+        /// </summary>
+        /// <param name="deviceTitle">The device title.</param>
+        /// <returns></returns>
+        [HttpGet("async/title/{deviceTitle}")]
+        [SwaggerOperation("GetDeviceByTitle")]
+        public async Task<IActionResult> GetDeviceByTitleAsync(string deviceTitle)
+        {
+            return new ObjectResult(await deviceService.GetDeviceByTitleAsync(deviceTitle));
+        }
+
+        /// <summary>
         /// Posts the specified device view model.
         /// </summary>
         /// <param name="deviceViewModel">The device view model.</param>

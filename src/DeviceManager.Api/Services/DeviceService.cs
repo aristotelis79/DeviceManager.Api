@@ -60,7 +60,18 @@ namespace DeviceManager.Api.Services
         /// <inheritdoc />
         public DeviceViewModel GetDeviceByTitle(string deviceTitle)
         {
-            throw new NotImplementedException();
+            var deviceRepository = unitOfWork.GetRepository<Device>();
+
+            return deviceRepository.FindBy(d => d.DeviceTitle.Equals(deviceTitle)).FirstOrDefault();
+        }
+
+        /// <inheritdoc />
+        public async Task<Device> GetDeviceByTitleAsync(string deviceTitle)
+        {
+            var deviceRepository = unitOfWork.GetRepository<Device>();
+
+            return (await deviceRepository.FindByAsync(d => d.DeviceTitle.Equals(deviceTitle))).FirstOrDefault(); 
+
         }
 
         /// <inheritdoc />

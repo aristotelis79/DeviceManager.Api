@@ -1,12 +1,16 @@
-﻿{
+{
   "ConnectionStrings": {
    
     // Postgres, MsSql
     "DatabaseType": "MsSql",
 
+<<<<<<< HEAD
     // Sql Database
-        "DefaultConnection": "Server=.;Database=DeviceDb;Trusted_Connection=True;MultipleActiveResultSets=true"
+    "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=DeviceDb;Trusted_Connection=True;MultipleActiveResultSets=true"
+=======
+        // Sql Database
         "DefaultConnection": "Server=.;Database=DeviceDb-ten2;Trusted_Connection=True;MultipleActiveResultSets=true"
+>>>>>>> master
 
     // Mongo Db connection string  --- Not yet implemented
     // "DefaultConnection": "mongodb://localhost:27017"

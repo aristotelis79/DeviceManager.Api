@@ -21,6 +21,7 @@ namespace DeviceManager.Api.Mappings
             // Device ViewModel To Device
             this.CreateMap<DeviceViewModel, Device>()
                 .ForMember(dest => dest.DeviceTitle, opt => opt.MapFrom(src => src.Title))
+<<<<<<< HEAD
                 .ForMember(dest => dest.DeviceCode, opt => opt.MapFrom(src => src.DeviceCode))
                 .ForMember(dest => dest.DeviceId, opt => opt.MapFrom(src => Guid.NewGuid()))
                 .ForMember(dest => dest.DeviceGroup, opt => opt.MapFrom(src => src));
@@ -44,10 +45,12 @@ namespace DeviceManager.Api.Mappings
                 .ForMember(dest => dest.Company, opt => opt.MapFrom(src => src.Company))
                 .ForMember(dest => dest.OperatingSystem, opt => opt.MapFrom(src => src.OperatingSystem));
 
-                //.ForMember(dest => dest.DeviceId, opt => opt.MapFrom(src => !string.IsNullOrWhiteSpace(src.DeviceCode) 
-                //                                                            && Regex.IsMatch(src.DeviceCode, Constants.IsGuidRegexExp) 
-                //                                                                ? new Guid(src.DeviceCode) 
-                //                                                                : Guid.NewGuid() ));
+=======
+                .ForMember(dest => dest.DeviceId, opt => opt.MapFrom(src => !string.IsNullOrWhiteSpace(src.DeviceCode) 
+                                                                            && Regex.IsMatch(src.DeviceCode, Constants.IsGuidRegexExp) 
+                                                                                ? new Guid(src.DeviceCode) 
+                                                                                : Guid.NewGuid() ));
+>>>>>>> master
         }
     }
 }

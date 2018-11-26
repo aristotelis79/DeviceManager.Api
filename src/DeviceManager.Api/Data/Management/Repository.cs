@@ -85,6 +85,12 @@ namespace DeviceManager.Api.Data.Management
         }
 
         /// <inheritdoc />
+        public async Task<IQueryable<T>> FindByAsync(Expression<Func<T, bool>> predicate)
+        {
+            return await Task.Run(() => this.dbSet.Where(predicate).AsQueryable<T>());
+        }
+
+        /// <inheritdoc />
         public IQueryable<T> FindBy(Expression<Func<T, bool>> predicate, string include)
         {
             return this.FindBy(predicate).Include(include);
