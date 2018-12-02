@@ -1,4 +1,6 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using DeviceManager.Api.Helpers;
 using DeviceManager.Api.Model;
@@ -32,13 +34,14 @@ namespace DeviceManager.Api.UnitTests.Api
         public async Task GetDevices_WithoutTenantId_ReturnsInternalServerErrorResult()
         {
             // Arrange and Act
-            var devicesApiBuilder = await new DevicesApiBuilder()
-                .QueryWith(page: 1, pageCount: 5, version: "1.0")
-                .Get();
+            var devicesApiBuilder = new DevicesApiBuilder()
+                .QueryWith(page: 1, pageCount: 5, version: "1.0");
 
             // Assert
-            devicesApiBuilder.HttpResponseMessage.StatusCode
-                .Should().Be(HttpStatusCode.InternalServerError);
+            await Assert.ThrowsAsync<HttpRequestException>(async () =>
+            {
+                await devicesApiBuilder.Get();
+            });
         }
 
         [Fact]
