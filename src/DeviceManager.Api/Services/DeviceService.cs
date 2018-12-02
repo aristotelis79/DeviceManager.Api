@@ -62,16 +62,19 @@ namespace DeviceManager.Api.Services
         {
             var deviceRepository = unitOfWork.GetRepository<Device>();
 
-            return deviceRepository.FindBy(d => d.DeviceTitle.Equals(deviceTitle)).FirstOrDefault();
+            var deviceData = deviceRepository.FindBy(d => d.DeviceTitle.Equals(deviceTitle)).FirstOrDefault();
+
+            return mapper.Map<DeviceViewModel>(deviceData);
         }
 
         /// <inheritdoc />
-        public async Task<Device> GetDeviceByTitleAsync(string deviceTitle)
+        public async Task<DeviceViewModel> GetDeviceByTitleAsync(string deviceTitle)
         {
             var deviceRepository = unitOfWork.GetRepository<Device>();
 
-            return (await deviceRepository.FindByAsync(d => d.DeviceTitle.Equals(deviceTitle))).FirstOrDefault(); 
+            var deviceData = (await deviceRepository.FindByAsync(d => d.DeviceTitle.Equals(deviceTitle))).FirstOrDefault(); 
 
+            return mapper.Map<DeviceViewModel>(deviceData);
         }
 
         /// <inheritdoc />

@@ -31,11 +31,11 @@ namespace DeviceManager.Api.Configuration
                     Version = "v1.0",
                     Description = "Dotnet core multi tenant application",
                     TermsOfService = "TODO: Add Terms of service",
-                    Contact = new Contact {
-                        Name = "Boris Zaikin",
-                        Email = "TODO: Add Contact email",
-                        Url = "https://github.com/Boriszn/DeviceManager.Api"
-                    },
+                    //Contact = new Contact {
+                    //    Name = "Boris Zaikin",
+                    //    Email = "TODO: Add Contact email",
+                    //    Url = "https://github.com/Boriszn/DeviceManager.Api"
+                    //},
                     License = new License {
                         Name = "MIT License",
                         Url = "https://opensource.org/licenses/MIT"

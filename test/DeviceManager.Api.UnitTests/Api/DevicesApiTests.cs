@@ -72,20 +72,20 @@ namespace DeviceManager.Api.UnitTests.Api
         }
 
         [Fact (
-            Skip = "GetDeviceByTitle by title is not implemented"
+            //Skip = "GetDeviceByTitle by title is not implemented"
             )]
         public async Task GetDeviceByTitle_WithTenantId_ReturnsOkResult()
         {
             // Arrange and Act
             var devicesApiBuilder = await new DevicesApiBuilder()
-                .QueryWithTitle("RO Controller 2", version: "1.0")
+                .QueryWithTitle("Device2", version: "1.0")
                 //.WithTenantId("e7e73238-662f-4da2-b3a5-89f4abb87969")
                 .WithTenantId(Constants.Tenant2Guid)
                 .Get();
 
             // Assert
             devicesApiBuilder.HttpResponseMessage.StatusCode
-                .Should().Be(HttpStatusCode.InternalServerError);
+                .Should().Be(HttpStatusCode.OK);
         }
 
         [Fact ( 
@@ -98,7 +98,7 @@ namespace DeviceManager.Api.UnitTests.Api
                 .DefaultQuery(version: "1.0")
                 .WithDeviceViewModelData(new DeviceViewModel()
                 {
-                    DeviceCode = "12B89FFB-A053-47E5-BAE1-81644DCEA79F", Title = "RO Controller"
+                    DeviceCode = "12B89FFB-A053-47E5-BAE1-81644DCEA79F", Title = "Device2"
                 })
                 //.WithTenantId("e7e73238-662f-4da2-b3a5-89f4abb87969")
                 .WithTenantId(Constants.Tenant2Guid)

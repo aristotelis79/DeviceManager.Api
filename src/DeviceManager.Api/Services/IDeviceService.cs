@@ -42,7 +42,7 @@ namespace DeviceManager.Api.Services
         /// </summary>
         /// <param name="deviceTitle">The device title.</param>
         /// <returns></returns>
-        Task<Device> GetDeviceByTitleAsync(string deviceTitle);
+        Task<DeviceViewModel> GetDeviceByTitleAsync(string deviceTitle);
 
         /// <summary>
         /// Creates the device.
