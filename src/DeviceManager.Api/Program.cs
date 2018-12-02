@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
 namespace DeviceManager.Api
@@ -14,21 +15,20 @@ namespace DeviceManager.Api
         /// <param name="args">Command line parameters</param>
         public static void Main(string[] args)
         {
-            var host = BuildWebHost(args);
-            host.Run();
+            CreateWebHostBuilder(args).Build().Run();
         }
+
         /// <summary>
         /// Fix migrations https://github.com/aspnet/EntityFrameworkCore/issues/9415#issuecomment-327589912
         /// </summary>
         /// <param name="args">Command line arguments</param>
         /// <returns></returns>
-        public static IWebHost BuildWebHost(string[] args) =>
-            new WebHostBuilder()
-                .UseKestrel()
-                .UseContentRoot(Directory.GetCurrentDirectory())
-                .UseIISIntegration()
-                .UseStartup<Startup>()
-                .UseApplicationInsights()
-                .Build();
+        private static IWebHostBuilder CreateWebHostBuilder(string[] args) =>     
+                                        WebHost.CreateDefaultBuilder(args)
+                                            .UseKestrel()
+                                            .UseContentRoot(Directory.GetCurrentDirectory())
+                                            .UseIISIntegration()
+                                            .UseStartup<Startup>()
+                                            .UseApplicationInsights();
     }
 }
