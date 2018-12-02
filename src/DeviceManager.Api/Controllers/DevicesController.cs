@@ -8,7 +8,7 @@ using DeviceManager.Api.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 using Serilog;
-using Swashbuckle.AspNetCore.SwaggerGen;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace DeviceManager.Api.Controllers
 {
@@ -107,8 +107,8 @@ namespace DeviceManager.Api.Controllers
         /// <returns></returns>
         [HttpPost]
         [SwaggerOperation("CreateDevice")]
-        [SwaggerResponse(204, null, "Device was saved successfuly")]
-        [SwaggerResponse(400, null, "Error in saving the Device")]
+        [SwaggerResponse(204, "Device was saved successfuly")]
+        [SwaggerResponse(400, "Error in saving the Device")]
         public IActionResult Post([FromBody]DeviceViewModel deviceViewModel)
         {
             deviceService.CreateDevice(deviceViewModel);

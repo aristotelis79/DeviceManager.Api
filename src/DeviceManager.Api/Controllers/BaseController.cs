@@ -2,7 +2,7 @@ using DeviceManager.Api.Helpers;
 using DeviceManager.Api.Resources;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
-using Swashbuckle.AspNetCore.SwaggerGen;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace DeviceManager.Api.Controllers
 {
