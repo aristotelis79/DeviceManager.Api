@@ -7,6 +7,7 @@ using DeviceManager.Api.Resources;
 using DeviceManager.Api.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
+using Serilog;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace DeviceManager.Api.Controllers
@@ -41,6 +42,11 @@ namespace DeviceManager.Api.Controllers
         [ValidateActionParameters]
         public IActionResult Get([FromQuery, Required]int page, [FromQuery, Required]int pageSize)
         {
+            Log.Information("Log: Log.Information");
+            Log.Warning("Log: Log.Warning");
+            Log.Error("Log: Log.Error");
+            Log.Fatal("Log: Log.Fatal");
+
             return new ObjectResult(deviceService.GetDevices(page, pageSize));
         }
 

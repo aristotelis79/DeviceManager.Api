@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Serilog;
+using Serilog.Formatting.Compact;
 
 namespace DeviceManager.Api
 {
@@ -22,12 +24,19 @@ namespace DeviceManager.Api
         /// <param name="env">The env.</param>
         public Startup(IHostingEnvironment env)
         {
-            var builder = new ConfigurationBuilder()
+            var configuration = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
-                .AddEnvironmentVariables();
-            Configuration = builder.Build();
+                .AddEnvironmentVariables()
+                .Build();
+        
+            Log.Logger = new LoggerConfiguration()
+                //.ReadFrom.Configuration(configuration)
+                .WriteTo.File(new CompactJsonFormatter(), "log.txt")
+                .CreateLogger();
+
+            Configuration = configuration;
         }
 
         /// <summary>
@@ -77,14 +86,15 @@ namespace DeviceManager.Api
         /// <param name="app">The application.</param>
         /// <param name="env">The env.</param>
         /// <param name="loggerFactory">The logger factory.</param>
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)//, ILoggerFactory loggerFactory)
         {
-            loggerFactory.AddConsole(Configuration.GetSection(Constants.Logging));
-            loggerFactory.AddDebug();
-#if RELEASE
+//            loggerFactory.AddConsole(Configuration.GetSection(Constants.Logging));
+           
+//            loggerFactory.AddDebug();
+//#if RELEASE
 
-            loggerFactory.AddFile(Configuration.GetSection("Logging"));
-#endif
+//            loggerFactory.AddFile(Configuration.GetSection("Logging"));
+//#endif
             // Localization support
             LocalizationConfiguration.Configure(app);
 

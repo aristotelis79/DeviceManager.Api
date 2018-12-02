@@ -1,6 +1,8 @@
 ﻿using System.IO;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Logging;
+using Serilog;
 
 namespace DeviceManager.Api
 {
@@ -9,6 +11,8 @@ namespace DeviceManager.Api
     /// </summary>
     public class Program
     {
+        //private static string _environmentName;
+
         /// <summary>
         /// Entry method for dotnet core hosting
         /// </summary>
@@ -28,6 +32,12 @@ namespace DeviceManager.Api
                                             .UseKestrel()
                                             .UseContentRoot(Directory.GetCurrentDirectory())
                                             .UseIISIntegration()
+                                            .ConfigureLogging((hostingContext, config) =>
+                                            {
+                                                config.ClearProviders();
+                                                //_environmentName = hostingContext.HostingEnvironment.EnvironmentName;
+                                            })
+                                            .UseSerilog()
                                             .UseStartup<Startup>()
                                             .UseApplicationInsights();
     }
